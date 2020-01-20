@@ -1,0 +1,49 @@
+﻿@model MyStatz.Models.LeaderBoard
+@{
+    ViewData["Title"] = "LeaderBoard";
+}
+
+<h2>LeaderBoard</h2>
+
+<table class="table">
+    <thead>
+        <tr class="table">
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Time</th>
+            <th>Matches</th>
+            <th>Activity</th>
+            <td>Country</td>
+
+        </tr>
+    </thead>
+    @foreach (var item in Model.Players)
+    {
+        <tbody>
+            <tr>
+                <td>@item.SteamAccount?.SeasonLeaderboardRank</td>
+                <td><img src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/@item.SteamAccount.Avatar" >
+    
+                @if (item.SteamAccount != null && item.SteamAccount.ProSteamAccount != null)
+                {
+                    @item.SteamAccount.ProSteamAccount.Name
+                }
+                else
+                {
+                    @item.SteamAccount.Name
+                }
+
+                </td>
+                @*<td>@item.SteamAccount?.ProSteamAccount?.Name</td>*@
+                <td>@item.LastUpdateDateTime</td>
+                <td>@item.MatchCount</td>
+                <td>@item.Activity</td>
+                @*<td>@item.SteamAccount?.ProSteamAccount.Countries</td>*@
+                
+            </tr>
+
+        </tbody>
+    }
+
+
+</table>
