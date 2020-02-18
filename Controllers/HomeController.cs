@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MyStatz.Models;
 using static MyStatz.Models.PaginationModel;
@@ -53,11 +54,35 @@ namespace MyStatz.Controllers
            
     }
 
-       
+
+        [HttpPost("~/signin")]
+        public IActionResult SignIn()//[FromForm] string provider)
+        {
+            // Note: the "provider" parameter corresponds to the external
+            // authentication provider choosen by the user agent.
+            //if (string.IsNullOrWhiteSpace(provider))
+            //{
+            //    return BadRequest();
+            //}
+
+            //if (!await HttpContext.IsProviderSupportedAsync("Steam"))
+            //{
+            //    return BadRequest();
+            //}
+
+            // Instruct the middleware corresponding to the requested external identity
+            // provider to redirect the user agent to its own authorization endpoint.
+            // Note: the authenticationScheme parameter must match the value configured in Startup.cs
+
+
+            var providers = HttpContext.RequestServices.GetService(typeof(IAuthenticationSchemeProvider));
+            return Challenge(new AuthenticationProperties { RedirectUri = "/Home/MyProfile" }, "Steam");
+        }
+
 
         public IActionResult MyProfile()
         {
-            
+            //HttpContext.User;
             return View();
         }
 

@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Owin.Security.Providers.Steam;
-using Owin.Security.Providers.OpenID;
-using AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode;
-
-
+//using Owin.Security.Providers.Steam;
+//using Owin.Security.Providers.OpenID;
+//using AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MyStatz
 {
@@ -36,13 +36,19 @@ namespace MyStatz
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddAuthentication().AddSteam(steamOptions =>
+            services.AddAuthentication(options =>
             {
-                steamOptions.Authority = new Uri("http://steamcommunity.com/openid");
-                //steamOptions.ClientSecret = Configuration["Authentication:Steam:ClientSecret"];
-                steamOptions.CallbackPath = new PathString("/signin-steam");
-                steamOptions.RequireHttpsMetadata = false;
-            });
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie()
+            .AddSteam();
+            //.AddSteam(steamOptions =>
+            //{
+            //    steamOptions.Authority = new Uri("http://steamcommunity.com/openid");
+            //    //steamOptions.ClientSecret = Configuration["Authentication:Steam:ClientSecret"];
+            //    steamOptions.CallbackPath = new PathString("/signin-steam");
+            //    steamOptions.RequireHttpsMetadata = false;
+            //});
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -63,7 +69,7 @@ namespace MyStatz
                 
             }
 
-
+            
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
