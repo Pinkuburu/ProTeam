@@ -1,20 +1,20 @@
-﻿
+﻿@model MyStatz.Models.MyProfile
 @{
     ViewData["Title"] = "MyProfile";
 
 }
 
 
+
 @if (User?.Identity?.IsAuthenticated ?? false)
 {
     <h1>Welcome, @User.Identity.Name</h1>
-
-    <p>
-        @foreach (var claim in Context.User.Claims)
-        {
-            <div><code>@claim.Type</code>: <strong>@claim.Value</strong></div>
-        }
-    </p>
+    @if (Model != null)
+    {
+        @*<p>@Model.SteamAccount.Name</p>*@
+        <p>@Model.PlayerInfo.SteamAccount.Id</p>
+    }
+ 
 
     <a class="btn btn-lg btn-danger" href="/signout?returnUrl=%2F">Sign out</a>
 
@@ -23,122 +23,100 @@
 <h2>MyProfile</h2>
 
 
-<table class="table">
-    <thead class="thead-dark">
+<table class="tb-leaderboard tb-hover">
+    <thead thead-leaderboard>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th>Hero</th>
+            <th>W/L</th>
+            <th>Radiant/Dire</th>
+            <th>K/D/A</th>
+            <th>Duration</th>
+            <th>GPM</th>
+            <th>EMP</th>
+            <th>IMP</th>
+            <th>Item</th>
+            <th>Recent Game</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>7mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>twitter</td>
-        </tr>
-    </tbody>
-</table>
+    @{
+        foreach (var items in Model.PlayerMatches)
+        {
+            foreach (var item in items.Players)
+            {
+                <tbody>
+                    <tr>
+                        @{string heroImageLink = "http://media.steampowered.com/apps/dota2/images/heroes/" + item.HeroImageId + ".png";}
+                        <td>
+                            <img class="hero-image" src="@heroImageLink" />
+                        </td>
+                        <td>@item.IsVictory</td>
 
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>987</td>
+                        <td>@item.IsRadiant</td>
 
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>987</td>
 
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>987</td>
+                        <td>@item.NumKills/@item.NumDeaths/@item.NumAssists</td>
 
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>789</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>987</td>
+                        <td>NOT FOUND</td>
 
-        </tr>
-    </tbody>
+                        <td>@item.GoldPerMinute</td>
+
+                        <td>@item.ExperiencePerMinute</td>
+
+                        <td>@item.Imp</td>
+
+                        @{ 
+                                string[] itemImages = { 
+                                item.Item0Id + ".png",
+                                item.Item1Id + ".png",
+                                item.Item2Id + ".png",
+                                item.Item3Id + ".png",
+                                item.Item4Id + ".png",
+                                item.Item5Id + ".png"
+                            };
+
+                        }
+
+                        <td>
+                            <table class="tb-item-images">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[0]" />
+                                        </td>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[1]" />
+                                        </td>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[2]" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[3]" />
+                                        </td>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[4]" />
+                                        </td>
+                                        <td>
+                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[5]" />
+                                        </td>
+                                    </tr>                                    
+                                </tbody>
+                            </table>
+                        </td>
+
+
+                        <td>NOT FOUND</td>
+                    </tr>
+
+                </tbody>
+            }
+
+
+
+        }
+    }
+
+
+
 </table>

@@ -1,7 +1,7 @@
 ﻿using MyStatz.Models;
 using System;
 using System.Reflection;
-
+using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
 
 namespace MyStatz.Controllers.ExtensionMethods
 {
@@ -79,6 +79,7 @@ namespace MyStatz.Controllers.ExtensionMethods
             //return time.ToString();
         }
 
+       
 
 
     

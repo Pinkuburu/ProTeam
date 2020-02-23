@@ -223,3 +223,22 @@ progress[value]::-webkit-progress-value {
     background-color: #434343 !important;
     opacity: 0.75;
 }
+
+/*.items-container {
+    display: flex;
+}*/
+.item-image{
+    width: 19px !important;
+    height: 15px !important;
+}
+.tb-item-images{
+    padding: 0;
+}
+
+.tb-item-images tbody tr td{
+    padding: 2px;
+}
+.hero-image {
+    width: 59px;
+    height: 33px;
+}

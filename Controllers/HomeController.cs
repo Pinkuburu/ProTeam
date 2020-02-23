@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using MyStatz.Models;
-using static MyStatz.Models.PaginationModel;
+//using static MyStatz.Models.PaginationModel;
 
 namespace MyStatz.Controllers
 {
@@ -75,14 +75,45 @@ namespace MyStatz.Controllers
             // Note: the authenticationScheme parameter must match the value configured in Startup.cs
 
 
-            var providers = HttpContext.RequestServices.GetService(typeof(IAuthenticationSchemeProvider));
+            //var providers = HttpContext.RequestServices.GetService(typeof(IAuthenticationSchemeProvider));
             return Challenge(new AuthenticationProperties { RedirectUri = "/Home/MyProfile" }, "Steam");
         }
 
 
-        public IActionResult MyProfile()
+        public async Task<IActionResult> MyProfile()
         {
             //HttpContext.User;
+            if (User != null && User.Claims.Count() > 0)
+            {
+                string phrase = User.Claims.First().Value;
+                string[] sp = phrase.Split('/');
+                var comid = sp[sp.Length - 1];               
+                var cti = Convert.ToInt64(comid);
+                var convertid = cti - 76561197960265728;
+                var myprofile = new MyProfile();
+
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage responseMessage = null;
+                    responseMessage = await client.GetAsync($"https://api.stratz.com/api/v1/Player/{convertid}");
+                    myprofile.PlayerInfo = await responseMessage.Content.ReadAsAsync<PlayerInfo>();
+
+
+                    responseMessage = await client.GetAsync($"https://api.stratz.com/api/v1/Player/{convertid}/matches");
+                    myprofile.PlayerMatches = await responseMessage.Content.ReadAsAsync<List<PlayerMatches>>();
+
+
+                    return View(myprofile);                 
+
+
+                }
+
+               
+
+
+
+
+            }
             return View();
         }
 
