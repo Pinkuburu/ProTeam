@@ -10,7 +10,7 @@ namespace MyStatz.Models
         public long Id { get; set; }
         public bool DidRadiantWin { get; set; }
         public int DurationSeconds { get; set; }
-        public int StatsDateTime { get; set; }
+        public int StartDateTime { get; set; }
         public int EndDateTime { get; set; }
         public int AvgImp { get; set; }
 

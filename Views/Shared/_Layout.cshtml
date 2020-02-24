@@ -31,24 +31,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MyStatz</a>
+                <a asp-area="" asp-controller="Home" asp-action="LeaderBoard" class="navbar-brand">MyStatz</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li><a asp-area="" asp-controller="" asp-action="Index">Home</a></li>*@
-                    <li><a asp-area="" asp-controller="" asp-action="LeaderBoard">Leader Board</a></li>
-                    <li><a asp-area="" asp-controller="" asp-action="MyProfile">My Profile</a></li>
+                    <li><a asp-controller="Home" asp-action="LeaderBoard">Leader Board</a></li>
+                    <li><a asp-controller="Home" asp-action="MyProfile">My Profile</a></li>
 
                 </ul>
-                
-                <form class="form-inline" asp-controller="Home" asp-action="SignIn">
-                
-                    <div class="md-form my-0 steam-login">                        
-                            <button type="submit" class="btn-steam form-control mr-sm-2" asp-controller="Home" asp-action="SignIn"><i class="fab fa-steam-symbol"></i> Log In</button>
-                    </div>
-                </form>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.HasClaim(claim => claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"))
+                    {
+                        var name = TempData.Peek("name");
+                        <span>@name</span>
+                    }
+                    <form class="form-inline" asp-controller="Authentication" asp-action="SignOut">
+                        <div class="md-form my-0 steam-login">
+                            <button type="submit" class="btn-steam form-control mr-sm-2"><i class="fab fa-steam-symbol"></i>Sign Out</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    var name = TempData["name"];
+                    
+                    <form class="form-inline" asp-controller="Authentication" asp-action="SignIn">
 
-
+                        <div class="md-form my-0 steam-login">
+                            <button type="submit" class="btn-steam form-control mr-sm-2"><i class="fab fa-steam-symbol"></i> Log In</button>
+                        </div>
+                    </form>
+                    
+                }
             </div>
         </div>
     </nav>

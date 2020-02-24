@@ -31,11 +31,8 @@ namespace MyStatz.Controllers.ExtensionMethods
 
         public static string CovertToTime(this int totalSeconds) //since 01.01.1970
         {
-            //var stttt = DateTime.FromOADate(timetick);
             var startDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(totalSeconds);
             var now = DateTime.Now;
-            //var substractedTicks = DateTime.Now.Ticks - timetick;
-            //TimeSpan ts =  TimeSpan.FromSeconds(secondsSinceLastUpdate);
             TimeSpan ts = now.Subtract(startDate);
             //var days = Convert.ToDecimal(ts.TotalDays);
             var hours = Convert.ToDecimal(ts.TotalHours);

@@ -251,7 +251,62 @@ namespace MyStatz.Models
         recipe_ring_of_aquila_lg = 211,
         ring_of_aquila_lg = 212,
         recipe_tranquil_boots_lg = 213,
-        tranquil_boots_lg = 214
+        tranquil_boots_lg = 214,
+        shadow_amulet_lg = 215,
+        ward_dispenser_lg = 218,
+        enchanted_mango_lg = 216,
+        guardian_greaves_lg = 231,
+        aether_lens_lg = 232,
+        octarine_core_lg = 235,
+        aeon_disk_lg = 256,
+        glimmer_cape_lg = 254,
+        keen_optic_lg = 287,
+        grove_bow_lg = 288,
+        quickening_charm_lg = 289,
+        philosophers_stone_lg = 290,
+        force_boots_lg = 291,
+        desolator_2_lg = 292,
+        phoenix_ash_lg = 293,
+        seer_stone_lg = 294,
+        elixer_lg = 302,
+        vampire_fangs_lg = 297,
+        craggy_coat_lg = 298,
+        greater_faerie_fire_lg = 299,
+        timeless_relic_lg = 300,
+        mirror_shield_lg = 301,
+        ironwood_tree_lg = 304,
+        mango_tree_lg = 328,
+        royal_jelly_lg = 305,
+        pupils_gift_lg = 306,
+        tome_of_aghanim_lg = 307,
+        repair_kit_lg = 308,
+        mind_breaker_lg = 309,
+        third_eye_lg = 310,
+        spell_prism_lg = 311,
+        princes_knife_lg = 325,
+        imp_claw_lg = 334,
+        flicker_lg = 335,
+        spy_gadget_lg = 336,
+        spider_legs_lg = 326,
+        vambrace_lg = 331,
+        ocean_heart_lg = 354,
+        broom_handle_lg = 355,
+        trusty_shovel_lg = 356,
+        nether_shawl_lg = 357,
+        dragon_scale_lg = 358,
+        essence_ring_lg = 359,
+        clumsy_net_lg = 360,
+        enchanted_quiver_lg = 361,
+
+
+
+
+
+
+
+
+
+
     }
 
     public enum HeroAvatar
@@ -355,6 +410,27 @@ namespace MyStatz.Models
         shredder_sb = 98,
         bristleback_sb = 99,
         tusk_sb = 100,
-        skywrath_mage_sb = 101
+        skywrath_mage_sb = 101,
+        abaddon_sb = 102,
+        elder_titan_sb = 103,
+        legion_commander_sb = 104,
+        ember_spirit_sb = 106,
+        earth_spirit_sb = 107,
+        abyssal_underlord_sb = 108,
+        terrorblade_sb = 109,
+        phoenix_sb = 110,
+        techies_sb = 105,
+        oracle_sb = 111,
+        winter_wyvern_sb = 112,
+        arc_warden_sb = 113,
+        monkey_king_sb = 114,
+        dark_willow_sb = 119,
+        pangolier_sb = 120,
+        grimstroke_sb = 121,
+        void_spirit_sb = 126,
+        snapfire_sb = 128,
+        mars_sb = 129
+
+
     }
 }

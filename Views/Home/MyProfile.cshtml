@@ -15,8 +15,9 @@
         <p>@Model.PlayerInfo.SteamAccount.Id</p>
     }
  
-
-    <a class="btn btn-lg btn-danger" href="/signout?returnUrl=%2F">Sign out</a>
+    <form asp-controller="Authentication" asp-action="SignOut">
+        <button type="submit" class="btn btn-lg btn-danger">Sign out</button>
+    </form>
 
 
 }
@@ -56,7 +57,8 @@
 
                         <td>@item.NumKills/@item.NumDeaths/@item.NumAssists</td>
 
-                        <td>NOT FOUND</td>
+                        @{ string matchDuration = ((int)TimeSpan.FromSeconds(items.DurationSeconds).TotalMinutes).ToString() + " min";}
+                        <td>@matchDuration</td>
 
                         <td>@item.GoldPerMinute</td>
 
@@ -106,7 +108,7 @@
                         </td>
 
 
-                        <td>NOT FOUND</td>
+                        <td>@items.EndDateTime.CovertToTime()</td>
                     </tr>
 
                 </tbody>
