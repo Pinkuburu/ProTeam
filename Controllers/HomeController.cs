@@ -14,11 +14,6 @@ namespace MyStatz.Controllers
 {
     public class HomeController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-
         public async Task<IActionResult> LeaderBoard(int region, int page)
         {
             try
@@ -51,7 +46,8 @@ namespace MyStatz.Controllers
                     ViewData["Error"] = false;
                     return View(globalLeaderBoard);
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ViewData["Error"] = true;
                 return View();
@@ -60,7 +56,6 @@ namespace MyStatz.Controllers
 
            
     }
-
 
         public async Task<IActionResult> MyProfile()
         {

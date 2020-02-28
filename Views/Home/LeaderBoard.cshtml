@@ -2,7 +2,7 @@
 
 
 @{
-    ViewData["Title"] = "MyStatz - Leaderboard";
+    ViewData["Title"] = "Leaderboard";
 }
 
 
@@ -10,7 +10,13 @@
 
 @if ((bool)ViewData["Error"])
 {
-    <h1 style="color:white;background-color:red;">Error: Something went wrong!</h1>
+    <div class="square">
+        <div class="content2">
+            <h1>Sorry, Something went wrong!</h1>
+            <h2>(>_<)</h2>
+        </div>
+    </div>
+    
 }
 else
 {
@@ -217,7 +223,7 @@ else
 
                     <li class="page-item">
                         @{
-                            if (Model.CurrentPage == 1)
+                            if (Model.CurrentPage == 1 )
                             {
                                 <a class="page-link" style="background-color: #2a2828" href="~/Home/LeaderBoard?region=@CurrentRegion&page=1">1</a>
                             }

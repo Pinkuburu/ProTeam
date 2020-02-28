@@ -21,6 +21,11 @@ body {
     line-height: 1.4;
 }
 
+html {
+    min-width: 100%;
+    min-height: 100%;
+}
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
@@ -38,6 +43,52 @@ body {
         display: none;
     }
 }
+
+.square {
+    width: auto;
+    min-height: -webkit-fill-available;
+    border-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    width: auto;
+    height: 100px;
+    margin: auto;
+    padding-top: 5px;
+    border: double white;
+    border-radius: 4px;
+    color: white;
+    white-space: nowrap;
+    box-sizing: border-box;
+    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 110px;
+}
+
+.content2 {
+    width: auto;
+    height: 100px;
+    margin: auto;
+    padding-top: 5px;
+    border: double white;
+    border-radius: 4px;
+    color: white;
+    white-space: nowrap;
+    box-sizing: border-box;
+    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 130px;
+}
+
 
 .tab-container {
     display: flex;
@@ -71,25 +122,27 @@ body {
     border-radius: 4px;
 }
 
-
+.tb-leaderboard-scroll{
+    overflow-x: auto;
+    
+}
 
 .tb-leaderboard {
+    /*table-layout: fixed;*/
     width: 100%;
     max-width: 100%;
     border-collapse: collapse;
-    overflow: hidden;
+    /*overflow: scroll;*/
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
-th,
-td {
+th, td {
     padding: 15px;
     background-color: rgba(255,255,255,0.1);
     color: #fff;
 }
 
-.thead-leaderboard,
-th {
+.thead-leaderboard, th {
     background-color: #393939;
 }
 
@@ -119,7 +172,36 @@ th {
     border-radius: 3px;
     z-index: 2;
 }
+
+.role-mouse {
+    position: relative;
+    cursor: default;
+    display: inline;
+}
+.role-mouse .role-text {  
+  background-color: black;  
+  color: #fff;
+  text-align: center;
+  font-size: smaller;
+  /*border-radius: 6px;*/
+  /*padding: 5px 0;*/
+  display: none;
+  float: right;
+  position: absolute;
+  z-index: 4;
+  top: -20px;
+  left: 10%;
+}
+
+.role-mouse:hover .role-text{
+    visibility: visible;
+    display: inline;
+
+}
  
+.hero-td{
+    white-space: nowrap;
+}
 
 .rank-contain {
     width: 50px;
@@ -208,9 +290,16 @@ progress[value]::-webkit-progress-value {
     
 }
 
+.user-name{
+    color: white;
+    margin-right: 30px;
+    display: inline-block;
+}
 
-.steam-login{
-    
+.col-button-steam{
+display: inline-block;
+}
+.steam-login {
     margin-top: 7px;
 }
 
@@ -219,14 +308,12 @@ progress[value]::-webkit-progress-value {
     background-color: black;
     color: white;
 }
-.steam-login :hover {
-    background-color: #434343 !important;
-    opacity: 0.75;
+
+.btn-steam :hover {
+    background-color: #434343;
 }
 
-/*.items-container {
-    display: flex;
-}*/
+
 .item-image{
     width: 19px !important;
     height: 15px !important;
@@ -242,3 +329,109 @@ progress[value]::-webkit-progress-value {
     width: 59px;
     height: 33px;
 }
+
+.logo-style {
+    width: 85px;
+    height: 35px;
+    margin-top: -9px;
+}
+
+.player-info-container {
+    width: 100%;
+    height: 150px;
+    background-color: #39393996;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+justify-content-player-info{
+    
+}
+
+.player-avatar-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.player-info-button {
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 40px;
+}
+
+.player-avatar {
+    width: 95px;
+    height: 95px;
+    border-radius: 3px;
+}
+
+.player-info{
+    margin-top: 10px;
+    color: white;
+    white-space: nowrap;    
+}
+
+.player-rank {
+    margin-top: 10px;
+    color: white;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+.role-image{
+    width: 15px;
+    height: 15px;
+}
+
+.winner-text {
+    text-align: center;
+    color: #54eca5;    
+}
+
+.loser-text {
+    text-align: center;
+    color: #ff4157;
+}
+
+.btn-to-steam{
+    background-color: black;
+    border: 1px;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;    
+    display: inline-block;    
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-to-steam:link, :visited{
+    color: white !important;
+}
+
+.btn-to-steam:hover{
+    background-color: #535151;  
+}
+
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;    
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.nowrap {
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+

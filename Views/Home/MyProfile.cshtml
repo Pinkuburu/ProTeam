@@ -6,68 +6,188 @@
 
 
 
-@if (User?.Identity?.IsAuthenticated ?? false)
-{
-    <h1>Welcome, @User.Identity.Name</h1>
-    @if (Model != null)
+@*@if (User?.Identity?.IsAuthenticated ?? false)
     {
-        @*<p>@Model.SteamAccount.Name</p>*@
-        <p>@Model.PlayerInfo.SteamAccount.Id</p>
-    }
- 
-    <form asp-controller="Authentication" asp-action="SignOut">
-        <button type="submit" class="btn btn-lg btn-danger">Sign out</button>
-    </form>
-
-
-}
-<h2>MyProfile</h2>
-
-
-<table class="tb-leaderboard tb-hover">
-    <thead thead-leaderboard>
-        <tr>
-            <th>Hero</th>
-            <th>W/L</th>
-            <th>Radiant/Dire</th>
-            <th>K/D/A</th>
-            <th>Duration</th>
-            <th>GPM</th>
-            <th>EMP</th>
-            <th>IMP</th>
-            <th>Item</th>
-            <th>Recent Game</th>
-        </tr>
-    </thead>
-    @{
-        foreach (var items in Model.PlayerMatches)
+        <h1>Welcome, @User.Identity.Name</h1>
+        @if (Model != null)
         {
-            foreach (var item in items.Players)
+            <p>@Model.SteamAccount.Name</p>
+            <p>@Model.PlayerInfo.SteamAccount.Id</p>
+        }
+
+        <form asp-controller="Authentication" asp-action="SignOut">
+            <button type="submit" class="btn btn-lg btn-danger">Sign out</button>
+        </form>
+
+
+    }*@
+<div class="flex-container nowrap">
+    <div class="player-info-container">        
+            <div class="player-avatar-container">
+                @{
+                    if (Model != null)
+                    {
+                        <img class="player-avatar" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/@Model.PlayerInfo.SteamAccount.Avatar">
+
+                    }
+                }
+            </div>
+            <div class="player-info">
+                <p>Name: @Model.PlayerInfo.SteamAccount.Name</p>
+                <p>Last Match: @Model.PlayerInfo.SteamAccount.LastMatchDateTime.CovertToTime()</p>
+                <p>Steam ID: @Model.PlayerInfo.SteamAccount.Id</p>
+            </div>
+            <div class="player-rank">
+                <p>Solo Rank: @Model.PlayerInfo.SteamAccount.SoloRank</p>
+                <p>Party Rank: @Model.PlayerInfo.SteamAccount.PartyRank</p>
+                <p style="font-size: x-small">*MMR is based on https://api.stratz.com/ </p>
+
+            </div>
+        
+            <div class="player-info-button">
+                <a class="btn-to-steam" href="@Model.PlayerInfo.SteamAccount.ProfileUri" target="_blank"><i class="fab fa-steam-symbol"></i>&nbsp; Steam</a>
+                @*<form action="@Model.PlayerInfo.SteamAccount.ProfileUri">
+                    <button class="btn-to-steam" type="submit" target="_blank"><i class="fab fa-steam-symbol"></i>&nbsp; Steam</button>
+                </form>*@
+            </div>
+
+    </div>
+</div>
+
+
+
+<div class="tb-leaderboard-scroll">
+
+    <table class="tb-leaderboard tb-hover">
+        <thead class="thead-leaderboard">
+            <tr>
+                <th>Hero</th>
+                <th style="text-align:center">Result</th>
+                <th>Type</th>
+                <th>K/D/A</th>
+                <th>Duration</th>
+                <th>GPM</th>
+                <th>XPM</th>
+                <th class="imp-th">IMP<span class="imp-mouseover">Individual Match Performance. Based on Rank, Land, Role each match is evaluated to determine how well performance. 100 IMP is average.</span></th>
+                <th>Item</th>
+                <th>Last Matches</th>
+            </tr>
+        </thead>
+        @{
+            foreach (var items in Model.PlayerMatches)
             {
-                <tbody>
-                    <tr>
-                        @{string heroImageLink = "http://media.steampowered.com/apps/dota2/images/heroes/" + item.HeroImageId + ".png";}
-                        <td>
-                            <img class="hero-image" src="@heroImageLink" />
-                        </td>
-                        <td>@item.IsVictory</td>
+                foreach (var item in items.Players)
+                {
+                    <tbody>
+                        <tr>
+                            @{string heroImageLink = "http://media.steampowered.com/apps/dota2/images/heroes/" + item.HeroImageId + ".png";}
+                            <td>
+                                <div class="hero-td">
+                                    <img class="hero-image" src="@heroImageLink" />
+                                    @{
+                                        if (item.Role == 0)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/core.png" />
+                                                <span class="role-text">Core</span>
+                                            </div>
+                                        }
+                                        else if (item.Role == 1 || item.Role == 2)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/support.png" />
+                                                <span class="role-text">Support</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p></p>
+                                        }
+                                    }
 
-                        <td>@item.IsRadiant</td>
+                                    @{
+                                        if (item.Lane == 1)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/safelane.png" />
+                                                <span class="role-text">Safe Lane</span>
+                                            </div>
+                                        }
+                                        else if (item.Lane == 2)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/midlane.png" />
+                                                <span class="role-text">Mid Lane</span>
+                                            </div>
+                                        }
+                                        else if (item.Lane == 3)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/offlane.png" />
+                                                <span class="role-text">OffLane</span>
+                                            </div>
+
+                                        }
+                                        else if (item.Lane == 4)
+                                        {
+                                            <div class="role-mouse">
+                                                <img class="role-image" src="~/images/icon/raoming.png" />
+                                                <span class="role-text">Roaming</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+
+                                            <p></p>
+                                        }
+                                    }
+                                </div>
+                            </td>
+                            @{ if (@item.IsVictory == true)
+                                {
+                                    <td class="winner-text">WIN</td>
+                                }
+                                else
+                                {
+                                    <td class="loser-text">LOSE</td>
+                                }
+                            }
+                            <td>
+                                @{
+                                    string gameMode;
+                                    GameMode.GameModeNames.TryGetValue(items.GameMode, out gameMode);
+                                }
+                                @gameMode
+                            </td>
 
 
-                        <td>@item.NumKills/@item.NumDeaths/@item.NumAssists</td>
+                            <td>@item.NumKills/@item.NumDeaths/@item.NumAssists</td>
 
-                        @{ string matchDuration = ((int)TimeSpan.FromSeconds(items.DurationSeconds).TotalMinutes).ToString() + " min";}
-                        <td>@matchDuration</td>
+                            @{ string matchDuration = ((int)TimeSpan.FromSeconds(items.DurationSeconds).TotalMinutes).ToString() + " min";}
+                            <td>@matchDuration</td>
 
-                        <td>@item.GoldPerMinute</td>
+                            <td>@item.GoldPerMinute</td>
 
-                        <td>@item.ExperiencePerMinute</td>
+                            <td>@item.ExperiencePerMinute</td>
 
-                        <td>@item.Imp</td>
+                            <td>
+                                @{
+                                    if (item.Imp == 0)
+                                    {
+                                        <span></span>
+                                    }
+                                    else
+                                    {
+                                        <div class="imp">
+                                            <div class="imp-text">@item.Imp</div>
+                                            <progress class="imp-progress" max="170" value="@item.Imp"></progress>
+                                        </div>
+                                    }
+                                }
+                            </td>
 
-                        @{ 
-                                string[] itemImages = { 
+                            @{
+                                string[] itemImages = {
                                 item.Item0Id + ".png",
                                 item.Item1Id + ".png",
                                 item.Item2Id + ".png",
@@ -76,49 +196,50 @@
                                 item.Item5Id + ".png"
                             };
 
-                        }
+                            }
 
-                        <td>
-                            <table class="tb-item-images">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[0]" />
-                                        </td>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[1]" />
-                                        </td>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[2]" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[3]" />
-                                        </td>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[4]" />
-                                        </td>
-                                        <td>
-                                            <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[5]" />
-                                        </td>
-                                    </tr>                                    
-                                </tbody>
-                            </table>
-                        </td>
+                            <td>
+                                <table class="tb-item-images">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[0]" />
+                                            </td>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[1]" />
+                                            </td>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[2]" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[3]" />
+                                            </td>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[4]" />
+                                            </td>
+                                            <td>
+                                                <img class="item-image" src="http://media.steampowered.com/apps/dota2/images/items/@itemImages[5]" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
 
 
-                        <td>@items.EndDateTime.CovertToTime()</td>
-                    </tr>
+                            <td>@items.EndDateTime.CovertToTime()</td>
+                        </tr>
 
-                </tbody>
+                    </tbody>
+                }
+
+
+
             }
-
-
-
         }
-    }
 
 
 
-</table>
+    </table>
+</div>  

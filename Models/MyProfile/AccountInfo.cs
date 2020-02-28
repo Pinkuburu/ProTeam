@@ -8,8 +8,11 @@ namespace MyStatz.Models
     public class AccountInfo
     {
         public int Id { get; set; }
-        public DateTime LastActiveTime { get; set; }
+        public int LastMatchDateTime { get; set; }
         public string Avatar { get; set; }
         public string Name { get; set; }
+        public string ProfileUri { get; set; }
+        public int SoloRank { get; set; }
+        public int PartyRank { get; set; }
     }
 }

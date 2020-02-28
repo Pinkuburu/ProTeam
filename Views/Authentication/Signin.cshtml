@@ -1,7 +1,11 @@
 ﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-    <form asp-controller="Authentication" asp-action="signin">
-        <h1>The page "My Profile" requires you to sign in with <button type="submit" class="btn-info">Steam</button></h1>
-    </form>
+@* The page "My Profile" requires you to sign in with STEAM *@
+
+<div class="square">
+    <div class="content">
+        <form asp-controller="Authentication" asp-action="signin">
+            <h2>The page "My Profile" requires you to sign in with<button type="submit" class="btn-to-steam"><i class="fab fa-steam-symbol"></i>&nbsp;Steam</button></h2>
+        </form>
+    </div>
+</div>
+    
