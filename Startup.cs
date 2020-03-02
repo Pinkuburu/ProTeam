@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-//using Owin.Security.Providers.Steam;
-//using Owin.Security.Providers.OpenID;
-//using AuthenticationMode = Microsoft.Owin.Security.AuthenticationMode;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MyStatz
@@ -42,17 +33,8 @@ namespace MyStatz
             })
             .AddCookie()
             .AddSteam();
-            //.AddSteam(steamOptions =>
-            //{
-            //    steamOptions.Authority = new Uri("http://steamcommunity.com/openid");
-            //    //steamOptions.ClientSecret = Configuration["Authentication:Steam:ClientSecret"];
-            //    steamOptions.CallbackPath = new PathString("/signin-steam");
-            //    steamOptions.RequireHttpsMetadata = false;
-            //});
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,20 +47,13 @@ namespace MyStatz
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                app.UseHsts();
-                
+                app.UseHsts();                
             }
-
             
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            
-
-
-
-
+            app.UseCookiePolicy();   
 
             app.UseMvc(routes =>
             {

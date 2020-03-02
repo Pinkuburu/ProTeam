@@ -4,23 +4,6 @@
 
 }
 
-
-
-@*@if (User?.Identity?.IsAuthenticated ?? false)
-    {
-        <h1>Welcome, @User.Identity.Name</h1>
-        @if (Model != null)
-        {
-            <p>@Model.SteamAccount.Name</p>
-            <p>@Model.PlayerInfo.SteamAccount.Id</p>
-        }
-
-        <form asp-controller="Authentication" asp-action="SignOut">
-            <button type="submit" class="btn btn-lg btn-danger">Sign out</button>
-        </form>
-
-
-    }*@
 <div class="flex-container nowrap">
     <div class="player-info-container">        
             <div class="player-avatar-container">
@@ -28,9 +11,8 @@
                     if (Model != null)
                     {
                         <img class="player-avatar" src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/@Model.PlayerInfo.SteamAccount.Avatar">
-
                     }
-                }
+                 }
             </div>
             <div class="player-info">
                 <p>Name: @Model.PlayerInfo.SteamAccount.Name</p>
@@ -41,23 +23,14 @@
                 <p>Solo Rank: @Model.PlayerInfo.SteamAccount.SoloRank</p>
                 <p>Party Rank: @Model.PlayerInfo.SteamAccount.PartyRank</p>
                 <p style="font-size: x-small">*MMR is based on https://api.stratz.com/ </p>
-
-            </div>
-        
+            </div>        
             <div class="player-info-button">
                 <a class="btn-to-steam" href="@Model.PlayerInfo.SteamAccount.ProfileUri" target="_blank"><i class="fab fa-steam-symbol"></i>&nbsp; Steam</a>
-                @*<form action="@Model.PlayerInfo.SteamAccount.ProfileUri">
-                    <button class="btn-to-steam" type="submit" target="_blank"><i class="fab fa-steam-symbol"></i>&nbsp; Steam</button>
-                </form>*@
             </div>
-
     </div>
 </div>
 
-
-
 <div class="tb-leaderboard-scroll">
-
     <table class="tb-leaderboard tb-hover">
         <thead class="thead-leaderboard">
             <tr>
@@ -137,7 +110,6 @@
                                         }
                                         else
                                         {
-
                                             <p></p>
                                         }
                                     }
@@ -159,17 +131,11 @@
                                 }
                                 @gameMode
                             </td>
-
-
                             <td>@item.NumKills/@item.NumDeaths/@item.NumAssists</td>
-
                             @{ string matchDuration = ((int)TimeSpan.FromSeconds(items.DurationSeconds).TotalMinutes).ToString() + " min";}
                             <td>@matchDuration</td>
-
                             <td>@item.GoldPerMinute</td>
-
                             <td>@item.ExperiencePerMinute</td>
-
                             <td>
                                 @{
                                     if (item.Imp == 0)
@@ -183,21 +149,19 @@
                                             <progress class="imp-progress" max="170" value="@item.Imp"></progress>
                                         </div>
                                     }
-                                }
+                                 }
                             </td>
-
                             @{
-                                string[] itemImages = {
-                                item.Item0Id + ".png",
-                                item.Item1Id + ".png",
-                                item.Item2Id + ".png",
-                                item.Item3Id + ".png",
-                                item.Item4Id + ".png",
-                                item.Item5Id + ".png"
-                            };
-
-                            }
-
+                                string[] itemImages = 
+                                {
+                                    item.Item0Id + ".png",
+                                    item.Item1Id + ".png",
+                                    item.Item2Id + ".png",
+                                    item.Item3Id + ".png",
+                                    item.Item4Id + ".png",
+                                    item.Item5Id + ".png"
+                                };
+                             }
                             <td>
                                 <table class="tb-item-images">
                                     <tbody>
@@ -226,20 +190,11 @@
                                     </tbody>
                                 </table>
                             </td>
-
-
                             <td>@items.EndDateTime.CovertToTime()</td>
                         </tr>
-
                     </tbody>
                 }
-
-
-
             }
-        }
-
-
-
+    }
     </table>
 </div>  

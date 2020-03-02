@@ -13,7 +13,5 @@ namespace MyStatz.Models
         High = 4,
         Very_High = 5,
         Intense = 6
-    }
-
-    
+    }    
 }

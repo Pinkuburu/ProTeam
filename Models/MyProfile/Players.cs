@@ -31,12 +31,9 @@ namespace MyStatz.Models
         public Item Item5Id { get; set; }
         public int RoamLane { get; set; }
         public bool IsVictory { get; set; }
-        public int Networth { get; set; }
-        public int Neutral0Id { get; set; }
-
-
-
+        public int Networth { get; set; } 
     }
+
     public enum Item
     {
         emptyitembg_lg = 0,

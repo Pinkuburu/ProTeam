@@ -5,9 +5,6 @@
     ViewData["Title"] = "Leaderboard";
 }
 
-
-
-
 @if ((bool)ViewData["Error"])
 {
     <div class="square">
@@ -15,8 +12,7 @@
             <h1>Sorry, Something went wrong!</h1>
             <h2>(>_<)</h2>
         </div>
-    </div>
-    
+    </div>    
 }
 else
 {
@@ -25,7 +21,6 @@ else
             <div class="col-5">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-
                         @if (Model.AmericaLeaderBoard == null)
                         {
                             <a class="nav-link" href="~/Home/LeaderBoard?region=0">America</a>
@@ -34,7 +29,6 @@ else
                         {
                             <a class="nav-link" style="background-color:#434343" href="~/Home/LeaderBoard?region=0">America</a>
                         }
-
                     </li>
                     <li class="nav-item ">
                         @if (Model.EuropeLeaderBoard == null)
@@ -68,7 +62,6 @@ else
                     </li>
                 </ul>
             </div>
-
             <div class="col global-leaderboard-text">
                 <span>Global Leaderboard</span>
             </div>
@@ -84,7 +77,6 @@ else
                     <th class="imp-th">Activity<span class="imp-mouseover">How often a match is played.</span></th>
                     <th class="imp-th">IMP<span class="imp-mouseover">Individual Match Performance. Based on Rank, Land, Role each match is evaluated to determine how well performance. 100 IMP is average.</span></th>
                     <th>Country</th>
-
                 </tr>
             </thead>
             @{
@@ -150,7 +142,6 @@ else
                                                 <p>ERROR</p>
                                             }
                                         }
-
                                     </div>
                                 </td>
                                 <td>
@@ -164,9 +155,7 @@ else
                                     {
                                         @item.SteamAccount.Name
                                     }
-
                                 </td>
-
                                 <td>@item.LastUpdateDateTime.CovertToTime()</td>
                                 <td>
                                     @{
@@ -195,7 +184,6 @@ else
                                             </div>
                                         }
                                     }
-
                                 </td>
                                 <td>
                                     @if (item.SteamAccount?.ProSteamAccount?.Countries != null)
@@ -205,12 +193,8 @@ else
                                             <span>@country</span>
                                         }
                                     }
-
                                 </td>
-
-
                             </tr>
-
                         </tbody>
                     }
                 }
@@ -220,7 +204,6 @@ else
         <nav aria-label="Page navigation example">
             <div class="text-center">
                 <ul class="pagination">
-
                     <li class="page-item">
                         @{
                             if (Model.CurrentPage == 1 )

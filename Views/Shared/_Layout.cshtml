@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Datum</title>
+    <title>@ViewData["Title"] - ProTeam</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -34,14 +34,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="LeaderBoard" class="navbar-brand"><img src="~/images/Datum-Logo.png" class="logo-style"/></a>
+                <a asp-area="" asp-controller="Home" asp-action="LeaderBoard" class="navbar-brand"><img src="~/images/ProTeam-Banner.png" class="logo-style"/></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav mr-auto">
-                    @*<li><a asp-area="" asp-controller="" asp-action="Index">Home</a></li>*@
+                <ul class="nav navbar-nav mr-auto">                    
                     <li><a asp-controller="Home" asp-action="LeaderBoard">Leader Board</a></li>
                     <li><a asp-controller="Home" asp-action="MyProfile">My Profile</a></li>
-
                 </ul>            
       
                 @if (User.Identity.IsAuthenticated)
@@ -55,8 +53,7 @@
                             </div>                           
                             <div class="col-button-steam">
                                 <form class="form-inline" asp-controller="Authentication" asp-action="SignOut">
-                                    <button type="submit" class="btn-steam form-control steam-login"><i class="fab fa-steam-symbol"></i>&nbsp; Sign Out</button>
-                                    
+                                    <button type="submit" class="btn-steam form-control steam-login"><i class="fab fa-steam-symbol"></i>&nbsp; Sign Out</button>                                    
                                 </form>
                             </div>                        
                         </div>
@@ -72,14 +69,10 @@
                             <button type="submit" class="btn-steam form-control mr-sm-2"><i class="fab fa-steam-symbol"></i>&nbsp; Sign In</button>
                         </div>
                     </form>
-
                 }
-
             </div>
         </div>
-    </nav>
-
-    
+    </nav>    
 
     <partial name="_CookieConsentPartial" />
 
@@ -87,7 +80,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2020 - Datum</p>
+            <p>&copy; 2020 - ProTeam</p>
         </footer>
     </div>
 
@@ -97,7 +90,6 @@
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/lib/fontawesome-free-5.12.1-web/css/all.css"></script>
         <script src="~/lib/fontawesome-free-5.12.1-web/css/fontawesome.css"></script>
-
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
@@ -115,9 +107,6 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="~/lib/fontawesome-free-5.12.1-web/css/all.min.css"></script>
         <script src="~/lib/fontawesome-free-5.12.1-web/css/fontawesome.min.css"></script>
-
-
-
     </environment>
 
     @RenderSection("Scripts", required: false)

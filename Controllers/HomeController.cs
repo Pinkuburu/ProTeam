@@ -21,7 +21,7 @@ namespace MyStatz.Controllers
                 using (HttpClient client = new HttpClient())
                 {
                     var globalLeaderBoard = new GlobalLeaderBoard();
-                    globalLeaderBoard.CurrentPage = page;
+                    globalLeaderBoard.CurrentPage = page == 0 ? 1 : page;
                     HttpResponseMessage responseMessage = null;
                     int skip = (page - 1) * 20;
                     switch (region)
@@ -51,8 +51,7 @@ namespace MyStatz.Controllers
             {
                 ViewData["Error"] = true;
                 return View();
-            }
-            
+            }           
 
            
     }
@@ -83,7 +82,6 @@ namespace MyStatz.Controllers
 
                         responseMessage = await client.GetAsync($"https://api.stratz.com/api/v1/Player/{convertid}/matches");
                         myprofile.PlayerMatches = await responseMessage.Content.ReadAsAsync<List<PlayerMatches>>();
-
 
                         return View(myprofile);
                     }

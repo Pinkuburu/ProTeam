@@ -28,9 +28,7 @@ namespace MyStatz.Controllers
             // Note: the authenticationScheme parameter must match the value configured in Startup.cs
             //var providers = HttpContext.RequestServices.GetService(typeof(IAuthenticationSchemeProvider));
             return Challenge(new AuthenticationProperties { RedirectUri = "/Home/MyProfile" }, signinProvider);
-        }
-
-        //[HttpGet("~/signout")]
+        }        
         
         [HttpPost]
         public async Task<IActionResult> SignOut()//[FromForm] string provider)
