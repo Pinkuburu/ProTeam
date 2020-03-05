@@ -23,6 +23,7 @@ I created this web application because I want to learn how to consume APIs in MV
 
 **Clone**
 - Clone this repo to your local machine.
+
 `$ git clone git@github.com:mintpw/ProTeam.git`
 
 - Go into the project directory and run the project
