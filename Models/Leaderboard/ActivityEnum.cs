@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace MyStatz.Models
+namespace ProTeam.Models
 {
     public enum ActivityEnum
     {

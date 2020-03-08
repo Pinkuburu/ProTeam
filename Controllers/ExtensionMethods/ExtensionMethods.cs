@@ -1,11 +1,11 @@
-﻿using MyStatz.Models;
+﻿using ProTeam.Models;
 using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
 
-namespace MyStatz.Controllers.ExtensionMethods
+namespace ProTeam.Controllers.ExtensionMethods
 {
     public static class ExtensionMethods
     {

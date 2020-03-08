@@ -7,10 +7,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using MyStatz.Models;
-//using static MyStatz.Models.PaginationModel;
+using ProTeam.Models;
+//using static ProTeam.Models.PaginationModel;
 
-namespace MyStatz.Controllers
+namespace ProTeam.Controllers
 {
     public class HomeController : Controller
     {

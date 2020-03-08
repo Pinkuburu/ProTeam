@@ -1,6 +1,6 @@
 using System;
 
-namespace MyStatz.Models
+namespace ProTeam.Models
 {
     public class ErrorViewModel
     {

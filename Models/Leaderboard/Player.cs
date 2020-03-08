@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyStatz.Models
+namespace ProTeam.Models
 {
     public class Player
     {    
