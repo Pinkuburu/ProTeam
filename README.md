@@ -9,7 +9,7 @@ I created this web application because I want to learn how to consume APIs in MV
 ## Overview
 - This project provides the [Stratz API](https://docs.stratz.com/ "Stratz API") for consumption.
 - Raw data comes from Web API provided by Stratz API.
-- Users login through Steam Authentication provided by Value.
+- Users login through Steam Authentication provided by Valve.
 
 ## Getting Started
 **Requirements:**
